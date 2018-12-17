@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FPS</title>
+        <link rel="stylesheet" href="../jquery-ui.css">
+        <script src="../jquery.min.js"></script>
+        <script src="../jquery-ui.js"></script>
+        <script>
+           
+			$( function() {
+			    $( "#sliderCO" ).slider(
+			    	{
+			    		min: 0,
+      					max: 5,
+      					step: 0.1,
+			    		slide: function(event, ui) {
+				            $.ajax({
+					            type: "POST",
+					            url: "/weather/setCloudOpacity",
+					            data: "value=" + ui.value
+					        });
+				        }
+			    	});
+			    $( "#sliderCS" ).slider(
+			    	{
+			    		min: 0,
+      					max: 50,
+			    		slide: function(event, ui) {
+				            $.ajax({
+					            type: "POST",
+					            url: "/weather/setCloudSpeed",
+					            data: "value=" + ui.value
+					        });
+				        }
+			    	});
+			  } );
+        </script>
+    </head>
+
+    <body class="ui-widget-content" style="border:0;">
+	    <p class="ui-state-default ui-corner-all ui-helper-clearfix" style="padding:4px;">
+		  <span class="ui-icon ui-icon-pencil" style="float:left; margin:-2px 5px 0 0;"></span>
+		  Weather controller
+		</p>
+ 
+        <div>
+			Cloud opacity : <div id="sliderCO"></div>
+			Cloud speed : <div id="sliderCS"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FPS</title>
+        <script src="jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                setInterval("time()",500);
+            });
+
+            function time() {
+                $.ajax({
+                    url: "/getTime"
+                }).then(function(data) {
+                   $('.time').text(data);
+                });
+            }
+        </script>
+    </head>
+
+    <body>
+        <div>
+            <p class="time"></p>
+        </div>
+    </body>
+</html>
